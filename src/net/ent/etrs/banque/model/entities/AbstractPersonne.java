@@ -25,8 +25,13 @@ public abstract class AbstractPersonne {
 
 
     public AbstractPersonne(String nom, String prenom) {
-        this.setNom(nom);
-        this.setPrenom(prenom);
+        try {
+            this.setNom(nom);
+            this.setPrenom(prenom);
+        } catch (PersonnePrenomException | PersonneNomException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
 
@@ -61,7 +66,7 @@ public abstract class AbstractPersonne {
     public void setPrenom(String prenom) throws PersonnePrenomException {
         // Vérifie que prénom soit pas null ni vide.
         if (Objects.isNull(nom) || nom.isBlank()) {
-            throw new PersonnePrenomException(ConstantesModel.PERSONNE_NOM_NON_RENSEIGNE_EXCEPTION);
+            throw new PersonnePrenomException(ConstantesModel.PERSONNE_PRENOM_NON_RENSEIGNE_EXCEPTION);
         }
         this.prenom = prenom;
     }

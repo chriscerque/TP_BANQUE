@@ -1,14 +1,13 @@
 package net.ent.etrs.banque.view.console;
 
-import common.view.util.AffichageConsole;
-import common.view.util.LectureConsole;
+import net.ent.etrs.banque.commons.AffichageConsole;
+import net.ent.etrs.banque.commons.LectureConsole;
 import net.ent.etrs.banque.model.entities.Client;
 import net.ent.etrs.banque.model.entities.Compte;
 import net.ent.etrs.banque.model.entities.EntitiesFactory;
 import net.ent.etrs.banque.model.entities.exceptions.DateNaissanceClientErroneeException;
 import net.ent.etrs.banque.model.entities.references.TypeCompte;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -87,9 +86,9 @@ public class ViewBanqueImpl implements ViewBanque {
     }
 
     @Override
-    public BigDecimal saisirMontant(String montant) {
+    public Float saisirMontant(String montant) {
         System.out.println("Saisir le montant:");
-        return LectureConsole.lectureBigDecimal();
+        return ((Double) LectureConsole.lectureDouble()).floatValue();
     }
 
     @Override
@@ -109,7 +108,7 @@ public class ViewBanqueImpl implements ViewBanque {
         int choix = LectureConsole.lectureChoixInt(0, listeTypeCompte.size());
 
         // instanciation du compte
-        Compte compte = EntitiesFactory.fabriquerCompte(client, listeTypes[choix - 1], BigDecimal.ZERO);
+        Compte compte = EntitiesFactory.fabriquerCompte(client, listeTypes[choix - 1], 0.0f);
 
         return compte;
     }

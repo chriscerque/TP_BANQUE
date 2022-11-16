@@ -5,7 +5,6 @@ import net.ent.etrs.banque.model.entities.Compte;
 import net.ent.etrs.banque.model.entities.exceptions.DateNaissanceClientErroneeException;
 import net.ent.etrs.banque.model.entities.references.TypeCompte;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -44,7 +43,7 @@ public interface ViewBanque {
 
     public TypeCompte selectionnerTypeCompte();
 
-    public BigDecimal saisirMontant(String montant);
+    public Float saisirMontant(String montant);
 
     public Compte saisirCompte(Client client);
 

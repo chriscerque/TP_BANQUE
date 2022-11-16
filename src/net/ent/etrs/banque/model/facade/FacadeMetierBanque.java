@@ -7,7 +7,6 @@ import net.ent.etrs.banque.model.entities.exceptions.CompteDecouvertAutoriseDepa
 import net.ent.etrs.banque.model.entities.exceptions.CompteException;
 import net.ent.etrs.banque.model.entities.exceptions.CompteMontantNegatifException;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -25,9 +24,9 @@ public interface FacadeMetierBanque {
 
     public List<Compte> listerComptesClient(Client client);
 
-    public void crediterCompte(Client client, Compte compte, BigDecimal montant) throws ClientException, CompteMontantNegatifException, CompteDecouvertAutoriseDepasseException;
+    public void crediterCompte(Client client, Compte compte, Float montant) throws ClientException, CompteMontantNegatifException, CompteDecouvertAutoriseDepasseException;
 
-    public void debiterCompte(Client client, Compte compte, BigDecimal montant) throws ClientException, CompteMontantNegatifException, CompteDecouvertAutoriseDepasseException;
+    public void debiterCompte(Client client, Compte compte, Float montant) throws ClientException, CompteMontantNegatifException, CompteDecouvertAutoriseDepasseException;
 
     public void init();
 

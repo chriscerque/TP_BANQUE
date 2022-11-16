@@ -4,7 +4,6 @@ package net.ent.etrs.banque.model.entities;
 import net.ent.etrs.banque.model.entities.exceptions.DateNaissanceClientErroneeException;
 import net.ent.etrs.banque.model.entities.references.TypeCompte;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public final class EntitiesFactory {
@@ -19,7 +18,7 @@ public final class EntitiesFactory {
     }
 
 
-    public static Compte fabriquerCompte(Client client, TypeCompte typeCompte, BigDecimal decouvertAutorise) {
+    public static Compte fabriquerCompte(Client client, TypeCompte typeCompte, Float decouvertAutorise) {
         return new Compte(decouvertAutorise, typeCompte);
     }
 

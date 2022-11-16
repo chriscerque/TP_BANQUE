@@ -1,8 +1,9 @@
 package net.ent.etrs.banque.model.facade;
 
-import common.dao.Dao;
-import common.dao.exceptions.DaoException;
+
+import net.ent.etrs.banque.model.daos.DaoBanque;
 import net.ent.etrs.banque.model.daos.DaoFactory;
+import net.ent.etrs.banque.model.daos.exceptions.DaoException;
 import net.ent.etrs.banque.model.entities.Client;
 import net.ent.etrs.banque.model.entities.Compte;
 import net.ent.etrs.banque.model.entities.EntitiesFactory;
@@ -10,15 +11,13 @@ import net.ent.etrs.banque.model.entities.exceptions.*;
 import net.ent.etrs.banque.model.entities.references.ConstantesModel;
 import net.ent.etrs.banque.model.entities.references.TypeCompte;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Random;
-import java.util.UUID;
 
 public class FacadeMetierImpl implements FacadeMetierBanque {
 
-    private Dao<Client, UUID> banqueDao = DaoFactory.persistenceMemoireFactory();
+    private DaoBanque banqueDao = DaoFactory.persistenceMemoireFactory();
 
     public FacadeMetierImpl() {
     }
@@ -121,13 +120,13 @@ public class FacadeMetierImpl implements FacadeMetierBanque {
         try {
             client = EntitiesFactory.fabriquerClient(nom, prenom, dateNaissance);
             // creation du compte courant
-            Compte compte1 = EntitiesFactory.fabriquerCompte(client, TypeCompte.COMPTE_COURANT, new BigDecimal("1000"));
+            Compte compte1 = EntitiesFactory.fabriquerCompte(client, TypeCompte.COMPTE_COURANT, 1000.0f);
             compte1.crediter(1000 * random.nextFloat());
             // création du livret A
-            Compte compte2 = EntitiesFactory.fabriquerCompte(client, TypeCompte.LIVRET_A, BigDecimal.ZERO);
+            Compte compte2 = EntitiesFactory.fabriquerCompte(client, TypeCompte.LIVRET_A, 0.0f);
             compte2.crediter(1000 * random.nextFloat());
             // création du livret dvd
-            Compte compte3 = EntitiesFactory.fabriquerCompte(client, TypeCompte.LIVRET_DVD, BigDecimal.ZERO);
+            Compte compte3 = EntitiesFactory.fabriquerCompte(client, TypeCompte.LIVRET_DVD, 0.0f);
             compte3.crediter(1000 * random.nextFloat());
 
             // ajout des 3 comptes au client
@@ -141,19 +140,10 @@ public class FacadeMetierImpl implements FacadeMetierBanque {
         } catch (DateNaissanceClientErroneeException e) {
             e.printStackTrace();
 //			System.out.println(e.getMessage());
-        } catch (CompteMontantNegatifException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (CompteDecouvertAutoriseDepasseException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (AjouterCompteClientException e) {
+        } catch (ClientException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (DaoException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (ClientException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }

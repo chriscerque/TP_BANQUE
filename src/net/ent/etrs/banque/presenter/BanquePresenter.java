@@ -6,7 +6,6 @@ import net.ent.etrs.banque.model.entities.exceptions.*;
 import net.ent.etrs.banque.model.facade.FacadeMetierBanque;
 import net.ent.etrs.banque.view.console.ViewBanque;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -139,7 +138,7 @@ public class BanquePresenter {
         //Selectionner le compte
         Compte compteSelect = vue.selectionnerCompte(clientSelect);
         //selectionner le montant
-        BigDecimal montantSelect = vue.saisirMontant("Choisir le montant:");
+        Float montantSelect = vue.saisirMontant("Choisir le montant:");
         try {
             metier.crediterCompte(clientSelect, compteSelect, montantSelect);
         } catch (CompteMontantNegatifException | CompteDecouvertAutoriseDepasseException | ClientException e) {
@@ -156,7 +155,7 @@ public class BanquePresenter {
         //Selectionner le compte
         Compte compteSelect = vue.selectionnerCompte(clientSelect);
         //selectionner le montant
-        BigDecimal montantSelect = vue.saisirMontant("Choisir le montant:");
+        Float montantSelect = vue.saisirMontant("Choisir le montant:");
         try {
             metier.debiterCompte(clientSelect, compteSelect, montantSelect);
         } catch (CompteMontantNegatifException | CompteDecouvertAutoriseDepasseException | ClientException e) {
