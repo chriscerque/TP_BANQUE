@@ -11,8 +11,6 @@ import java.util.UUID;
 
 /**
  * Persistence memoire ( "bidon")
- *
- * @author christophe.cerqueira
  */
 
 public class DaoBanqueEnMemoireImpl implements DaoBanque {

@@ -4,8 +4,6 @@ import net.ent.etrs.banque.model.entities.references.ConstantesModel;
 
 /**
  * Exception client typé pour la création d'un client.
- *
- * @author christophe.cerqueira
  */
 public class CreationClientException extends ClientException {
 

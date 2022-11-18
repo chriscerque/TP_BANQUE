@@ -20,7 +20,7 @@ public class FacadeMetierImpl implements FacadeMetierBanque {
 
     private DaoBanque banqueDao = DaoFactory.persistenceMemoireFactory();
 
-    public FacadeMetierImpl() {
+    protected FacadeMetierImpl() {
     }
 
     @Override
@@ -124,7 +124,7 @@ public class FacadeMetierImpl implements FacadeMetierBanque {
             Compte compte1 = EntitiesFactory.fabriquerCompte(client, TypeCompte.COMPTE_COURANT, 1000.0f);
             compte1.crediter(1000 * random.nextFloat());
             // création du livret A
-            Compte compte2 = EntitiesFactory.fabriquerCompte(client, TypeCompte.LIVRET_A, 0.0f);
+            Compte compte2 = EntitiesFactory.fabriquerCompte(client, TypeCompte.LIVRET_A, 50.0f);
             compte2.crediter(1000 * random.nextFloat());
             // création du livret dvd
             Compte compte3 = EntitiesFactory.fabriquerCompte(client, TypeCompte.LIVRET_DVD, 0.0f);

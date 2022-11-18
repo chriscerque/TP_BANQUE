@@ -3,8 +3,6 @@ package net.ent.etrs.banque.presenter.references;
 /**
  * Classe utilitaire regroupant les constantes et méthodes
  * utiles aux vues console.
- *
- * @author Christophe LOUËR
  */
 public final class ConstantesPresenter {
 

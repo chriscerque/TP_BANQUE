@@ -3,8 +3,6 @@ package net.ent.etrs.banque.model.daos;
 
 /**
  * Fabrique de persistance
- *
- * @author christophe.cerqueira
  */
 public final class DaoFactory {
 

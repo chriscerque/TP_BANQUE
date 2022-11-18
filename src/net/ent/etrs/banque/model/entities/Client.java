@@ -9,8 +9,6 @@ import java.util.List;
 
 /**
  * Classe représentant un client de la banque.
- *
- * @author christophe.cerqueira
  */
 public class Client extends AbstractPersonne {
 
@@ -65,23 +63,6 @@ public class Client extends AbstractPersonne {
             }
         }
         return resultat;
-    }
-
-    @Override
-    public String toString() {
-
-
-        StringBuilder builder = new StringBuilder();
-        builder.append(super.toString());
-        builder.append(System.lineSeparator());
-        builder.append("\tLISTE DES COMPTES :");
-        for (Compte compte : comptes) {
-            builder.append(System.lineSeparator());
-            builder.append(compte);
-        }
-        builder.append(System.lineSeparator());
-
-        return builder.toString();
     }
 
 

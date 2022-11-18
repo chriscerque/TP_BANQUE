@@ -3,8 +3,6 @@ package net.ent.etrs.banque.model.entities.references;
 /**
  * Enumération regroupant tous les types de compte.
  * Compte courant, livret A, livret dév. durable.
- *
- * @author christophe.cerqueira
  */
 public enum TypeCompte {
     COMPTE_COURANT("Compte courant"),

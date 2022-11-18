@@ -2,8 +2,6 @@ package net.ent.etrs.banque.model.entities.exceptions;
 
 /**
  * Exception concernant la gestion des clients.
- *
- * @author christophe.cerqueira
  */
 public class ClientException extends Exception {
     public ClientException(String message) {

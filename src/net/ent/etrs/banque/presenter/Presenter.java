@@ -17,8 +17,6 @@ import java.util.List;
 /**
  * Classe représentant le PRESENTER de l'application
  * selon le paradigme MVP.
- *
- * @author christophe.cerqueira
  */
 public class Presenter {
 
@@ -118,7 +116,20 @@ public class Presenter {
     }
 
     private static void afficherUnClient(Client client) {
-        AffichageConsole.afficherMessageAvecSautLigne(String.format("%s %s %s", client.getNom(), client.getPrenom(), client.getDateNaissance()));
+        StringBuilder builder = new StringBuilder();
+        builder.append(String.format("CLIENT n° %s", client.getId().toString()));
+        builder.append(String.format(" %-10s %-10s né le %s", client.getNom(), client.getPrenom(), client.getDateNaissance()));
+
+        builder.append(client);
+        builder.append(System.lineSeparator());
+        builder.append("\tLISTE DES COMPTES :");
+        for (Compte compte : client.getComptes()) {
+            builder.append(System.lineSeparator());
+            builder.append(compte);
+        }
+        builder.append(System.lineSeparator());
+
+        AffichageConsole.afficherMessageAvecSautLigne(builder.toString());
     }
 
     /**

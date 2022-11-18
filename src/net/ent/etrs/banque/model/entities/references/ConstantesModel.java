@@ -3,8 +3,6 @@ package net.ent.etrs.banque.model.entities.references;
 /**
  * Classe regroupant toutes les constantes de
  * l'application banque.
- *
- * @author christophe.cerqueira
  */
 public final class ConstantesModel {
 

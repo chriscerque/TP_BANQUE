@@ -8,8 +8,6 @@ import java.util.UUID;
 
 /**
  * Classe représentant un compte client.
- *
- * @author Christophe LOUËR
  */
 public class Compte {
     /**
@@ -110,7 +108,7 @@ public class Compte {
 
     private void operationSolde(float montant) throws CompteDecouvertAutoriseDepasseException {
         Float valeur = this.solde += montant;
-        if (valeur.compareTo(decouvertAutorise) < 0) {
+        if (valeur.compareTo(-1 * decouvertAutorise) < 0) {
             throw new CompteDecouvertAutoriseDepasseException(id);
         }
 

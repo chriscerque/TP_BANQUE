@@ -11,8 +11,6 @@ import java.util.UUID;
 
 /**
  * Classe abstraite représentant une personne.
- *
- * @author Christophe LOUËR
  */
 public abstract class AbstractPersonne {
     /**
@@ -44,17 +42,6 @@ public abstract class AbstractPersonne {
         return this.nom;
     }
 
-
-    public String getPrenom() {
-        return this.prenom;
-    }
-
-
-    public LocalDate getDateNaissance() {
-        return this.dateNaissance;
-    }
-
-
     public void setNom(String nom) throws PersonneNomException {
         // Vérifie que nom soit pas null ni vide.
         if (Objects.isNull(nom) || nom.isBlank()) {
@@ -63,12 +50,20 @@ public abstract class AbstractPersonne {
         this.nom = nom;
     }
 
+    public String getPrenom() {
+        return this.prenom;
+    }
+
     public void setPrenom(String prenom) throws PersonnePrenomException {
         // Vérifie que prénom soit pas null ni vide.
         if (Objects.isNull(nom) || nom.isBlank()) {
             throw new PersonnePrenomException(ConstantesModel.PERSONNE_PRENOM_NON_RENSEIGNE_EXCEPTION);
         }
         this.prenom = prenom;
+    }
+
+    public LocalDate getDateNaissance() {
+        return this.dateNaissance;
     }
 
     /**
@@ -121,11 +116,11 @@ public abstract class AbstractPersonne {
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append(String.format("CLIENT n° %s", this.id.toString()));
-        builder.append(String.format(" %-10s %-10s né le %s", this.nom, this.prenom, this.dateNaissance));
-        return builder.toString();
+        return "AbstractPersonne{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", dateNaissance=" + dateNaissance +
+                '}';
     }
-
-
 }

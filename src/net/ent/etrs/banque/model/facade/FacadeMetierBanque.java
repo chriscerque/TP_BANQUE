@@ -13,8 +13,6 @@ import java.util.List;
 /**
  * Façade métier proposant les opérations utiles
  * à l'application.
- *
- * @author Christophe LOUËR
  */
 public interface FacadeMetierBanque {
     public void creerClient(Client client) throws ClientException;

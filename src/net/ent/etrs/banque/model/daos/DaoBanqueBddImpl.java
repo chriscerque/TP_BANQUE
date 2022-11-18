@@ -9,8 +9,6 @@ import java.util.UUID;
 
 /**
  * Persistence base de données
- *
- * @author christophe.cerqueira
  */
 public class DaoBanqueBddImpl implements DaoBanque {
 
