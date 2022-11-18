@@ -1,4 +1,4 @@
-package net.ent.etrs.banque.view.console;
+package net.ent.etrs.banque.presenter.references;
 
 /**
  * Classe utilitaire regroupant les constantes et méthodes
@@ -6,7 +6,7 @@ package net.ent.etrs.banque.view.console;
  *
  * @author Christophe LOUËR
  */
-public final class Constante {
+public final class ConstantesPresenter {
 
     /**
      * Constante représentant le menu principal de
@@ -29,7 +29,7 @@ public final class Constante {
     };
     public static final int PLUS_GRANDE_OPTION_MENU = 7;
 
-    private Constante() {
+    private ConstantesPresenter() {
     }
 
 }

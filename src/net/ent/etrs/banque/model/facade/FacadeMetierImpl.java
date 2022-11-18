@@ -10,6 +10,7 @@ import net.ent.etrs.banque.model.entities.EntitiesFactory;
 import net.ent.etrs.banque.model.entities.exceptions.*;
 import net.ent.etrs.banque.model.entities.references.ConstantesModel;
 import net.ent.etrs.banque.model.entities.references.TypeCompte;
+import net.ent.etrs.banque.model.facade.exceptions.BusinessException;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -104,7 +105,7 @@ public class FacadeMetierImpl implements FacadeMetierBanque {
     }
 
     @Override
-    public void init() {
+    public void init() throws BusinessException {
         this.creerClientAvecComptes("Le Cam", "Jean", LocalDate.of(1969, 01, 10));
         this.creerClientAvecComptes("Le Cleac'h", "Armel", LocalDate.of(1980, 02, 01));
         this.creerClientAvecComptes("Thomson", "Alex", LocalDate.of(1990, 03, 01));
@@ -112,7 +113,7 @@ public class FacadeMetierImpl implements FacadeMetierBanque {
     }
 
 
-    private void creerClientAvecComptes(String nom, String prenom, LocalDate dateNaissance) {
+    private void creerClientAvecComptes(String nom, String prenom, LocalDate dateNaissance) throws BusinessException {
 
         Client client;
         Random random = new Random();
@@ -137,16 +138,10 @@ public class FacadeMetierImpl implements FacadeMetierBanque {
             // persiter
             this.banqueDao.create(client);
 
-        } catch (DateNaissanceClientErroneeException e) {
-            e.printStackTrace();
-//			System.out.println(e.getMessage());
-        } catch (ClientException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (DaoException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+        } catch (CompteConstructionException | ClientException | DaoException e) {
+            throw new BusinessException(e.getMessage(), e);
         }
+
 
     }
 

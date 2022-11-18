@@ -1,8 +1,7 @@
 package net.ent.etrs.banque.model.entities;
 
-import net.ent.etrs.banque.model.entities.exceptions.ClientException;
-import net.ent.etrs.banque.model.entities.exceptions.CompteDecouvertAutoriseDepasseException;
-import net.ent.etrs.banque.model.entities.exceptions.CompteMontantNegatifException;
+import net.ent.etrs.banque.model.entities.exceptions.*;
+import net.ent.etrs.banque.model.entities.references.ConstantesModel;
 import net.ent.etrs.banque.model.entities.references.TypeCompte;
 
 import java.util.UUID;
@@ -17,8 +16,8 @@ public class Compte {
      * Identifiant du compte.
      */
     private final UUID id = UUID.randomUUID();
-    private Float solde;
-    private Float decouvertAutorise;
+    private float solde;
+    private float decouvertAutorise;
     private TypeCompte typeCompte;
 
 
@@ -31,9 +30,15 @@ public class Compte {
 //	}
 
 
-    public Compte(Float decouvertAutorise, TypeCompte typeCompte) {
-        this.typeCompte = typeCompte;
-        this.decouvertAutorise = decouvertAutorise;
+    public Compte(float decouvertAutorise, TypeCompte typeCompte) throws CompteException {
+        try {
+            this.setTypeCompte(typeCompte);
+            this.setDecouvertAutorise(decouvertAutorise);
+        } catch (CompteTypeCompteException e) {
+            throw new CompteException(ConstantesModel.COMPTE_EXCEPTION, e);
+        }
+
+
     }
 
 
@@ -42,11 +47,11 @@ public class Compte {
         return this.id;
     }
 
-    public Float getSolde() {
+    public float getSolde() {
         return this.solde;
     }
 
-    public Float getDecouvertAutorise() {
+    public float getDecouvertAutorise() {
         return this.decouvertAutorise;
     }
 
@@ -56,6 +61,15 @@ public class Compte {
 
     public TypeCompte getTypeCompte() {
         return this.typeCompte;
+    }
+
+    public void setTypeCompte(TypeCompte typeCompte) throws CompteTypeCompteException {
+
+        if (typeCompte == null) {
+            throw new CompteTypeCompteException(ConstantesModel.COMPTE_TYPE_COMPTE_NON_RENSEIGNE_EXCEPTION);
+        }
+        //TODO controle des types de comptes
+        this.typeCompte = typeCompte;
     }
 
     // identité
@@ -68,7 +82,7 @@ public class Compte {
     }
 
 
-    public void crediter(Float montant) throws ClientException {
+    public void crediter(float montant) throws ClientException {
         try {
             this.controlerMontantPositif(montant);
             this.operationSolde(montant);
@@ -78,7 +92,7 @@ public class Compte {
 
     }
 
-    public void debiter(Float montant) throws ClientException {
+    public void debiter(float montant) throws ClientException {
         try {
             this.controlerMontantPositif(montant);
             this.operationSolde(-1 * montant);
@@ -88,13 +102,13 @@ public class Compte {
 
     }
 
-    private void controlerMontantPositif(Float montant) throws CompteMontantNegatifException {
+    private void controlerMontantPositif(float montant) throws CompteMontantNegatifException {
         if (montant < 0) {
             throw new CompteMontantNegatifException(this.id);
         }
     }
 
-    private void operationSolde(Float montant) throws CompteDecouvertAutoriseDepasseException {
+    private void operationSolde(float montant) throws CompteDecouvertAutoriseDepasseException {
         Float valeur = this.solde += montant;
         if (valeur.compareTo(decouvertAutorise) < 0) {
             throw new CompteDecouvertAutoriseDepasseException(id);

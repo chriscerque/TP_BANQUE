@@ -1,8 +1,8 @@
 package net.ent.etrs.banque.model.facade;
 
-public final class FacadeBanqueFactory {
+public final class FacadeMetierFactory {
 
-    private FacadeBanqueFactory() {
+    private FacadeMetierFactory() {
     }
 
     public static FacadeMetierBanque facadeMetierFactory() {

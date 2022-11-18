@@ -6,6 +6,7 @@ import net.ent.etrs.banque.model.entities.exceptions.ClientException;
 import net.ent.etrs.banque.model.entities.exceptions.CompteDecouvertAutoriseDepasseException;
 import net.ent.etrs.banque.model.entities.exceptions.CompteException;
 import net.ent.etrs.banque.model.entities.exceptions.CompteMontantNegatifException;
+import net.ent.etrs.banque.model.facade.exceptions.BusinessException;
 
 import java.util.List;
 
@@ -28,6 +29,6 @@ public interface FacadeMetierBanque {
 
     public void debiterCompte(Client client, Compte compte, Float montant) throws ClientException, CompteMontantNegatifException, CompteDecouvertAutoriseDepasseException;
 
-    public void init();
+    public void init() throws BusinessException;
 
 }

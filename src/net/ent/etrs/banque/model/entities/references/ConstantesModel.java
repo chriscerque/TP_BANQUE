@@ -21,6 +21,7 @@ public final class ConstantesModel {
     public static final String CLIENT_AJOUTER_TYPE_COMPTE_EXCEPTION = "Le client %s %s possède déjà un compte de type %s";
     public static final String PERSONNE_NOM_NON_RENSEIGNE_EXCEPTION = "Le nom du client doit être renseigné.";
     public static final String PERSONNE_PRENOM_NON_RENSEIGNE_EXCEPTION = "Le prénom du client doit être renseigné.";
+    public static final String COMPTE_TYPE_COMPTE_NON_RENSEIGNE_EXCEPTION = "Le type de compte doit être renseigné.";
 
     /**
      * Consteur privé pour interdir l'instanciation.
