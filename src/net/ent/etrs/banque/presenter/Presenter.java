@@ -41,7 +41,7 @@ public class Presenter {
 
     private static void afficherClients(List<Client> clients) {
         for (Client client : clients) {
-            AffichageConsole.afficherMessageAvecSautLigne(client.toString());
+            Presenter.afficherUnClient(client);
         }
     }
 
@@ -125,11 +125,16 @@ public class Presenter {
         builder.append("\tLISTE DES COMPTES :");
         for (Compte compte : client.getComptes()) {
             builder.append(System.lineSeparator());
-            builder.append(compte);
+            builder.append(formattageAffichageCompte(compte));
         }
         builder.append(System.lineSeparator());
 
         AffichageConsole.afficherMessageAvecSautLigne(builder.toString());
+    }
+
+    private static String formattageAffichageCompte(Compte compte) {
+        return String.format("\tCompte [id=%s, typeCompte=%-15s, solde=%10.2f €, decouvertAutorise=%10.2f €]", compte.getId(), compte.getTypeCompte().name(), compte.getSolde(),
+                compte.getDecouvertAutorise());
     }
 
     /**

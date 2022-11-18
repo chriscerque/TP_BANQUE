@@ -135,9 +135,11 @@ public class Compte {
 
     @Override
     public String toString() {
-        return String.format("\tCompte [id=%s, typeCompte=%-15s, solde=%10.2f €, decouvertAutorise=%10.2f €]", id.toString(), typeCompte.name(), solde,
-                decouvertAutorise);
+        return "Compte{" +
+                "id=" + id +
+                ", solde=" + solde +
+                ", decouvertAutorise=" + decouvertAutorise +
+                ", typeCompte=" + typeCompte +
+                '}';
     }
-
-
 }
